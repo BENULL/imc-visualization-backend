@@ -5,11 +5,22 @@
 @author: BENULL
 @time: 2021/12/8 下午8:54
 """
-from flask import Flask
+from flask import Flask as _Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import config
+from flask.json import JSONEncoder as _JSONEncoder
 
 db = SQLAlchemy()
+
+
+class JSONEncoder(_JSONEncoder):
+    def default(self, o):
+        if hasattr(o, 'keys') and hasattr(o, '__getitem__'):
+            return dict(o)
+
+
+class Flask(_Flask):
+    json_encoder = JSONEncoder
 
 
 def create_app(config_name):
