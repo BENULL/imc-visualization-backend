@@ -9,7 +9,7 @@ from flask import request
 
 from app.api import api, ServerResponse
 from app.exceptions.error import APIException
-from app.service.experiment import fetch, add, update
+from app.service.experiment import fetch, add, update, fetchModelAndExp
 
 
 @api.route('/experiment/fetchAll', methods=['POST'])
@@ -17,7 +17,7 @@ def searchExperiment():
     try:
         params = request.get_json()
         data = fetch(params)
-        return ServerResponse.createBySuccess(data=data, msg='ok')
+        return ServerResponse.createBySuccess(data=data)
     except APIException:
         return ServerResponse.createByError(msg="获取失败")
 
@@ -40,4 +40,13 @@ def updateExperiment():
         return ServerResponse.createBySuccess(msg='更新成功')
     except APIException:
         return ServerResponse.createByError(msg="更新失败")
+
+
+@api.route('/experiment/getCategory')
+def getCategory():
+    try:
+        category = fetchModelAndExp()
+        return ServerResponse.createBySuccess(data=category)
+    except APIException:
+        return ServerResponse.createByError(msg="获取失败")
 

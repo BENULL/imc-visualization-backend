@@ -17,7 +17,7 @@ def searchModel():
     try:
         params = request.get_json()
         data = fetch(params)
-        return ServerResponse.createBySuccess(data=data, msg='ok')
+        return ServerResponse.createBySuccess(data=data)
     except APIException:
         return ServerResponse.createByError(msg="获取失败")
 

@@ -12,7 +12,7 @@ class ServerResponse:
     @staticmethod
     def createBySuccess(status=0, data=None, msg=None):
         response = dict(status=status)
-        if data:
+        if data or len(data)==0:
             response['data'] = data
         if msg:
             response['msg'] = msg
@@ -26,7 +26,7 @@ class ServerResponse:
         return jsonify(response)
 
 
-from app.api import model, experiment
+from app.api import model, experiment, result
 
 
 
