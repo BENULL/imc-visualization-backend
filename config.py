@@ -20,18 +20,18 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-                              'mysql://root:lsbssg@10.176.54.24/imc-visualization'
+                              'mysql+pymysql://root:lsbssg@10.176.54.24:50123/imc-visualization'
 
 
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-                              'mysql://root:lsbssg@10.176.54.24/imc-visualization'
+                              'mysql+pymysql://root:lsbssg@10.176.54.24:50123/imc-visualization'
 
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-                              'mysql://root:lsbssg@10.176.54.24/imc-visualization'
+                              'mysql+pymysql://root:lsbssg@10.176.54.24:50123/imc-visualization'
 
 
 class DockerConfig(ProductionConfig):
