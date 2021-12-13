@@ -14,14 +14,20 @@ def fetch(params):
     if not params:
         data = Experiment.query.all()
     else:
-        pagination = Experiment.query.filter(Experiment.experiment_name.like(f'%{params["input"]}%')) \
+        pagination = db.session.query(Experiment.model_id, Experiment.experiment_name,
+                                      Experiment.experiment_id, Experiment.threshold, Experiment.end_time,
+                                      Experiment.test_time, Experiment.batchsize, Experiment.epoch, Experiment.recall,
+                                      Experiment.precision, Experiment.lr, Experiment.f1_score
+                                      , Model.model_name) \
+            .join(Model, Experiment.model_id == Model.model_id) \
+            .filter(Experiment.experiment_name.like(f'%{params["input"]}%')) \
             .paginate(params['page'],
                       params['pageSize'],
                       error_out=False)
-        data = dict(items=pagination.items,
-                    pager=dict(index=pagination.page,
-                               total=pagination.total,
-                               size=pagination.per_page))
+    data = dict(items=pagination.items,
+                pager=dict(index=pagination.page,
+                           total=pagination.total,
+                           size=pagination.per_page))
     return data
 
 

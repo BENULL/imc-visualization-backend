@@ -12,7 +12,7 @@ class ServerResponse:
     @staticmethod
     def createBySuccess(status=0, data=None, msg=None):
         response = dict(status=status)
-        if data or len(data)==0:
+        if data:
             response['data'] = data
         if msg:
             response['msg'] = msg

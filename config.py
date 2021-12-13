@@ -20,7 +20,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-                              'mysql+pymysql://root:lsbssg@10.176.54.24:50123/imc-visualization'
+                              'mysql+pymysql://root:lsbssg@10.176.54.40:21612/imc-visualization'
 
 
 class TestingConfig(Config):

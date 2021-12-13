@@ -39,8 +39,7 @@ class Experiment(Base):
 
 
     @staticmethod
-    def build(model_id, threshold, experiment_name, f1_score, precision, recall, epoch, lr, batchsize,
-                 test_time, **kwargs):
+    def build(model_id, experiment_name, test_time,threshold=None, f1_score=None, precision=None, recall=None, epoch=None, lr=None, batchsize=None, **kwargs):
         experiment = Experiment()
         experiment.model_id = model_id
         experiment.threshold = threshold
