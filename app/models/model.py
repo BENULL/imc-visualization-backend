@@ -27,7 +27,7 @@ class Model(Base):
         self.fields = ['model_id', 'model_name', 'description', 'params',
                        'structure']
     @staticmethod
-    def build(model_name, description, params, structure, **kwargs):
+    def build(model_name, description=None, params=None, structure=None, **kwargs):
         model = Model()
         model.model_name = model_name
         model.description = description

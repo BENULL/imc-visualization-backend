@@ -26,3 +26,13 @@ class ResultImage(Base):
     @orm.reconstructor
     def __init__(self):
         self.fields = ['image_id', 'image_src', 'experiment_id', 'score', 'mask_src', 'label_src']
+
+    @staticmethod
+    def build(image_src, score=None, mask_src=None, label_src=None, experiment_id=None, **kwargs):
+        resultImage = ResultImage()
+        resultImage.experiment_id = experiment_id
+        resultImage.score = score
+        resultImage.mask_src = mask_src
+        resultImage.label_src = label_src
+        resultImage.image_src = image_src
+        return resultImage

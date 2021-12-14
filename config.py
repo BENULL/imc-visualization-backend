@@ -11,6 +11,7 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'imc-visualization'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    UPLOAD_PATH = os.environ.get('UPLOAD_PATH') or os.path.join(os.path.dirname(__file__), 'uploads')
 
     @staticmethod
     def init_app(app):

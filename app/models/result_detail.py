@@ -23,3 +23,11 @@ class ResultDetail(Base):
     @orm.reconstructor
     def __init__(self):
         self.fields = ['detail_id', 'image_id', 'type', 'bounding_box']
+
+    @staticmethod
+    def build(image_id, type=None, bounding_box=None):
+        resultDetail = ResultDetail()
+        resultDetail.image_id = image_id
+        resultDetail.type = type
+        resultDetail.bounding_box = bounding_box
+        return resultDetail

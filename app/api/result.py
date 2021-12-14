@@ -9,7 +9,7 @@ from flask import request
 
 from app.api import api, ServerResponse
 from app.exceptions.error import APIException
-from app.service.result import fetch
+from app.service.result import fetch, upload
 
 
 @api.route('/result/fetchResult', methods=['POST'])
@@ -20,3 +20,13 @@ def searchResult():
         return ServerResponse.createBySuccess(data=data)
     except APIException:
         return ServerResponse.createByError(msg="获取失败")
+
+
+@api.route('/result/upload', methods=['POST'])
+def uploadResult():
+    try:
+        file = request.files.get("file")
+        upload(file)
+        return ServerResponse.createBySuccess(msg="上传成功")
+    except APIException:
+        return ServerResponse.createByError(msg="上传失败")

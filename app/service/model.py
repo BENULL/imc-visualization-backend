@@ -28,7 +28,7 @@ def add(model):
     with db.auto_commit():
         model = Model.build(**model)
         db.session.add(model)
-    return True
+    return model.model_id
 
 
 def update(model):
