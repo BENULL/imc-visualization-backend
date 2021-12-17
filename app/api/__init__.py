@@ -26,7 +26,7 @@ class ServerResponse:
         return jsonify(response)
 
 
-from app.api import model, experiment, result
+from app.api import model, experiment, result, user
 
 
 
